@@ -14,12 +14,15 @@ RUN apk add --no-cache \
         ghostscript \
         graphviz \
         g++ \
+        icu-dev \
+        libintl \
         libjpeg-turbo-dev \
         libmcrypt-dev \
         libmemcached-dev \
         libpng-dev \
         libreoffice-common \
         libreoffice-writer \
+        libxml2-dev \
         libzip-dev \
         make \
         python3 \
@@ -28,7 +31,7 @@ RUN apk add --no-cache \
     && chmod +x /usr/local/bin/unoconv
 
 RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ \
-    && docker-php-ext-install bcmath bz2 gd mysqli opcache pcntl pdo_mysql zip \
+    && docker-php-ext-install bcmath bz2 gd intl mysqli opcache pcntl pdo_mysql soap xmlrpc zip \
     && pecl install memcached redis \
     && docker-php-ext-enable memcached redis
 

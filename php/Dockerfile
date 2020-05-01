@@ -73,3 +73,10 @@ RUN chown -R www-data:www-data /var/www/ \
     && find /var/www -type f -exec chmod 600 {} \; \
     && chmod 400 /var/www/public/config-dist.php \
     && chmod 500 /var/www/public/vendor/bin/*
+
+COPY etc/cron/crontab /tmp/crontab.tmp
+RUN crontab -u www-data /tmp/crontab.tmp
+
+COPY docker-entrypoint-php-fpm.sh /docker-entrypoint.sh
+
+ENTRYPOINT ["/docker-entrypoint.sh"]

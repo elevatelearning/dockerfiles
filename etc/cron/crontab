@@ -1,0 +1,1 @@
+*/1 * * * * php /var/www/public/admin/cli/cron.php >/dev/null
